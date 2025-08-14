@@ -49,12 +49,6 @@ python app.py
 http://127.0.0.1:5000
 ```
 
-## 🌐 Deployment  
-You can deploy this app on:  
-- [Render](https://render.com/)  
-- [Railway](https://railway.app/)  
-- [Heroku](https://www.heroku.com/)  
-
 ## 📊 Example Prediction  
 **Input:**  
 - Age: 23  
