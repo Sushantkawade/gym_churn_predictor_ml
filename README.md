@@ -10,7 +10,7 @@ A Flask-based web application that predicts whether a gym member is likely to **
 - **ML Prediction** (Churn or Not Churn)  
 - **Probability of Churn** (in %)  
 - **Top 3 Reasons for Predicted Churn** for insights  
-- Elegant **Olive Green UI** for better user experience  
+- **Elegant UI** for better user experience  
 
 ## 🛠 Tech Stack  
 - **Backend:** Python, Flask  
@@ -33,8 +33,7 @@ A Flask-based web application that predicts whether a gym member is likely to **
 ## 📦 Installation  
 1. Clone the repository  
 ```bash
-git clone https://github.com/yourusername/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/Sushantkawade/gym_churn_predictor_ml.git
 ```
 2. Install dependencies  
 ```bash
