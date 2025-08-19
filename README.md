@@ -22,7 +22,11 @@ A Flask-based web application that predicts whether a gym member is likely to **
 ```
 ├── app.py                # Flask backend  
 ├── model.pkl             # Trained ML model  
-├── label_encoders.pkl    # Encoders for categorical features  
+├── label_encoders.pkl    # Encoders for categorical features
+├── model/  
+│   └── traning_LR.py       # traning script to train on logistic regression
+├── data/  
+│   └── gym_churn_1000entries.csv       # traning data 
 ├── templates/  
 │   ├── index.html        # Input form  
 │   └── result.html       # Prediction output page  
