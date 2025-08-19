@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Membership Churn Predictor</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> <!-- Optional: For icons -->
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+        form {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: 600;
+            color: #555;
+        }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+            background: #f9f9f9;
+            transition: border-color 0.3s;
+        }
+        input:focus, select:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        button {
+            margin-top: 25px;
+            width: 100%;
+            padding: 12px;
+            background: #007bff;
+            color: white;
+            border: none;
+            font-size: 1.1em;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .icon {
+            margin-right: 8px;
+        }
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            form {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1><i class="fas fa-dumbbell icon"></i> Gym Membership Churn Predictor</h1>
+
+    <form action="/predict" method="POST">
+        
+        <label><i class="fas fa-user icon"></i> Age:</label>
+        <input type="number" name="age" required min="18" max="100">
+
+        <label><i class="fas fa-tags icon"></i> Membership Type:</label>
+        <select name="membership_type" required>
+            <option>Basic</option>
+            <option>Premium</option>
+            <option>VIP</option>
+        </select>
+
+        <label><i class="fas fa-calendar-alt icon"></i> Start Date:</label>
+        <input type="date" id="start_date" name="start_date" required>
+
+        <label><i class="fas fa-calendar-check icon"></i> End Date:</label>
+        <input type="date" id="end_date" name="end_date" required>
+
+        <label><i class="fas fa-clock icon"></i> Membership Length (Months):</label>
+        <input type="number" id="membership_length_months" name="membership_length_months" required min="1" readonly> <!-- Added 'readonly' to prevent manual edits, but you can remove if you want overrides -->
+
+        <label><i class="fas fa-walking icon"></i> Avg Visits Per Month:</label>
+        <input type="number" name="avg_visits_per_month" required min="0">
+
+        <label><i class="fas fa-exclamation-triangle icon"></i> Payment Delays:</label>
+        <input type="number" name="payment_delays" required min="0">
+
+        <label><i class="fas fa-credit-card icon"></i> Payment History:</label>
+        <select name="payment_history" required>
+            <option>On-time</option>
+            <option>Late</option>
+            <option>Mixed</option>
+        </select>
+
+        <label><i class="fas fa-check-square icon"></i> Attendance Record:</label>
+        <select name="attendance_record" required>
+            <option>Regular</option>
+            <option>Occasional</option>
+            <option>Rare</option>
+        </select>
+
+        <label><i class="fas fa-star icon"></i> Satisfaction Score (1-10):</label>
+        <input type="number" name="satisfaction_score" min="1" max="10" required>
+
+        <button type="submit"><i class="fas fa-search icon"></i> Predict</button>
+    </form>
+
+    <script>
+        // Auto-calculate membership_length_months based on dates
+        const startDateInput = document.getElementById('start_date');
+        const endDateInput = document.getElementById('end_date');
+        const monthsInput = document.getElementById('membership_length_months');
+
+        function calculateMonths() {
+            const start = new Date(startDateInput.value);
+            const end = new Date(endDateInput.value);
+
+            if (start && end && !isNaN(start) && !isNaN(end)) {
+                const diffTime = end - start;
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // Days difference
+                if (diffDays < 0) {
+                    monthsInput.value = 0;
+                    alert("End date must be after start date!"); // Optional warning
+                    return;
+                }
+                const months = Math.round(diffDays / 30); // Approximate months (adjust divisor if needed, e.g., 30.44 for average)
+                monthsInput.value = months > 0 ? months : 1; // Minimum 1 to avoid 0
+            } else {
+                monthsInput.value = ''; // Clear if dates are invalid/empty
+            }
+        }
+
+        // Trigger calculation on date changes
+        startDateInput.addEventListener('change', calculateMonths);
+        endDateInput.addEventListener('change', calculateMonths);
+    </script>
+
+</body>
+</html>
