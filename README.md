@@ -2,7 +2,7 @@
 
 A Flask-based web application that predicts whether a gym member is likely to **churn** (cancel their membership) based on details like age, membership type, attendance, payment history, and satisfaction score. The app uses a trained **machine learning model** to provide predictions and probability scores along with **top 3 reasons for churn**.  
 
-[![Live Demo](https://img.shields.io/badge/Demo-Live-brightgreen)]([https://your-live-demo-link.com](https://sushant-kawade-gym-churn-predictor.onrender.com/predict))
+[![Live Demo](https://img.shields.io/badge/Demo-Live-brightgreen)](https://sushant-kawade-gym-churn-predictor.onrender.com/predict)
 
 ## 🚀 Features  
 - **Interactive Web Form** to input member details  
